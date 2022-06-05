@@ -1,0 +1,30 @@
+@startuml
+
+title Processus de test en XP
+
+
+start
+
+#d2b4de :Créer une classe de test;
+ 
+#d2b4de :Choisir un nom de classe qui représente le processus ou la classe testée;
+
+
+#3498db:Coder une méthode setup pour initialiser l'objet testé;
+note right: Créer des méthodes dans la classe testée pour produire des exemples
+
+
+#A0A0A0:Ecrire le test;
+
+repeat :Ecrire le code;
+
+#3498db:Executer le test;
+
+repeat while (Est ce que le test est passé?) is (non) not (oui)
+#58d68d:Releaser la fonctionnalité;
+
+#58d68d:Présenter la release au client;
+
+stop
+
+@enduml
