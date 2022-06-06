@@ -1,0 +1,65 @@
+/**
+ * Available tasks for the project
+ *
+ * <ul>
+ *     <li>createOutputFolder</li> : task to create the output folder
+ *     <li>listPML : list the available plant uml in the </li>
+ *     <li>findOutdatedPML : list the PML that requires an update. </li>
+ *     <li>buildPlantuml : build all the plantUml files</li>
+ *     <li>plantUmlTest : test PlantUml installation</li>*
+ *     <li>plantUmlGui : launch PlantUML Gui</li>*
+ * </ul>
+ */
+import com.byoskill.ListPMLTask
+import com.byoskill.CreateOutputFolderTask
+import com.byoskill.GenerateDiagramTask
+import groovy.transform.ToString
+
+
+ext {
+    sourceFolder = 'src/plantuml'
+    outputFolder = 'build/plantuml'
+}
+
+def createOutputTask = tasks.register("createOutputFolder", CreateOutputFolderTask) {
+    group = "PlantUML"
+    description = "Creates the output folder if necessary"
+    outputFolderPath = project.file(project.outputFolder).getAbsolutePath()
+}
+
+
+// Implémenter avec un listFiles
+// Puis avec un files()
+// Puis aprŝ avec un fileTree
+def listPML = tasks.register('listPML', ListPMLTask) {
+    group = 'PlantUML'
+    description = 'List the available diagrams'
+    sourceFolder = file(project.sourceFolder)
+}
+
+// https://tomgregory.com/gradle-task-inputs-and-outputs/
+
+// Task extraction with https://docs.gradle.org/current/userguide/custom_tasks.html
+tasks.register("buildPlantUml", GenerateDiagramTask) {
+    group = 'PlantUML'
+    description = 'Build all PlantUML present diagrams'
+    dependsOn createOutputTask, listPML
+    sourceFolder = file(project.sourceFolder)
+    buildFolder = createOutputTask.get().outputFolder
+}
+
+task plantUmlTest {
+    group = 'PlantUML'
+    description = 'Test the PlantUML installation'
+}
+
+task plantUmlGui {
+    group = 'PlantUML'
+    description = 'Display the PlantUML Gui'
+}
+
+task displayImages {
+    group = 'PlantUML'
+    description = 'Display the PlantUML generated images'
+
+}
