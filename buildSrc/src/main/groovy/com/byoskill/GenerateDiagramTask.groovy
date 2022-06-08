@@ -11,7 +11,7 @@ import org.gradle.api.tasks.TaskAction
 
 // https://discuss.gradle.org/t/how-to-pass-data-from-one-task-to-another/3980
 //@CacheableTask
-class GenerateDiagramTask extends DefaultTask {
+public class GenerateDiagramTask extends DefaultTask {
     @PathSensitive(PathSensitivity.ABSOLUTE)
     @InputDirectory
     File sourceFolder
