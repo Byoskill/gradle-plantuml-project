@@ -3,7 +3,7 @@
  *
  * <ul>
  *     <li>createOutputFolder</li> : task to create the output folder
- *     <li>listPML : list the available plant uml in the </li>
+ *     <li>listPML : list the available plant uml in the project</li>
  *     <li>findOutdatedPML : list the PML that requires an update. </li>
  *     <li>buildPlantuml : build all the plantUml files</li>
  *     <li>plantUmlTest : test PlantUml installation</li>*
